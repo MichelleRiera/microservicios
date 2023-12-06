@@ -1,0 +1,36 @@
+<app-menu></app-menu>
+<app-cabecera></app-cabecera>
+
+<section>
+  <div class="form-box">
+    <div class="form-value">
+      <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+
+        <div class="contenedor-titulo">
+          <br>
+          <h2>Editar Cliente</h2>
+          <br>
+        </div>
+
+        <div class="inputbox">
+          <i class="fas fa-id-card"></i>
+          <input type="text" [(ngModel)]="persona.username" name="username" required #username="ngModel" disabled>
+          <label for="">Cédula</label>
+        </div>
+
+        <div class="inputbox" [class.ng-invalid]="password.invalid && (password.dirty || password.touched)">
+          <i class="fas fa-user"></i>
+          <input type="text" [(ngModel)]="persona.password" name="password" required #password="ngModel">
+          <label for="">Nombre</label>
+        </div>
+
+        
+
+        <button mat-raised-button color="primary" class="full-width-button" type="submit" [disabled]="!registerForm.valid">Registrar</button>
+
+      </form>
+    </div>
+  </div>
+</section>
+
+

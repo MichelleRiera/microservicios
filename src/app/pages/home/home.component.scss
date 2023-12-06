@@ -1,0 +1,10 @@
+.contenedor {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-template-rows: 100%;
+  height: 100vh; /* esto asume que quieres que el contenedor ocupe toda la altura de la vista */
+}
+
+
+
+
