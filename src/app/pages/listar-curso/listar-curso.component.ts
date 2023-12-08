@@ -3,6 +3,7 @@ import { curso } from 'src/app/domain/curso.model';
 import { AsignarCursoService } from 'src/app/services/asignar-curso.service';
 import { AutorizarService } from 'src/app/services/autorizar.service';
 import { CursoService } from 'src/app/services/curso.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-listar-curso',
@@ -13,17 +14,21 @@ export class ListarCursoComponent {
   curso: curso[] = [];
   courseId: string | undefined;
   userId: string | undefined;
+  
 
   constructor(
     private cursoService: CursoService,
     private AsignarCursoService: AsignarCursoService,
-    private authService: AutorizarService
+    private authService: AutorizarService,
+    private snackBar: MatSnackBar
   ) {
-    this.userId = this.authService.getCurrentUser()?.id;
+    
+    this.userId = JSON.parse(localStorage.getItem('currentUser') || '{}').id;
   }
 
   ngOnInit(): void {
     this.loadCursos();
+    this.userId = JSON.parse(localStorage.getItem('currentUser') || '{}').id;
   }
 
   loadCursos() {
@@ -45,6 +50,9 @@ export class ListarCursoComponent {
       const userIdString = String(userId);
       this.AsignarCursoService.asignarCurso(userIdString, courseId).subscribe(
         (data) => {
+          this.snackBar.open('Curso Asignado con exito', 'ok', {
+            duration: 3000, 
+          });
           console.log('Curso asignado con éxito:', data);
         },
         (error) => {

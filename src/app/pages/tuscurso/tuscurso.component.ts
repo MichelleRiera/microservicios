@@ -17,8 +17,8 @@ export class TuscursoComponent {
 
   ngOnInit(): void {
     // Obtén el userId del servicio de autenticación
-    const user = this.authService.getCurrentUser();
-    this.userId = user?.id;
+    const user =  JSON.parse(localStorage.getItem('currentUser') || '{}');
+    this.userId = user.id;
 
     if (this.userId) {
       this.cargarCursosDeUsuario(this.userId);
@@ -27,8 +27,8 @@ export class TuscursoComponent {
     }
   }
 
-  cargarCursosDeUsuario(userId: string) {
-    this.cursoService.getCursosDeUsuario(userId).subscribe(
+  cargarCursosDeUsuario(idd: string) {
+    this.cursoService.getCursosDeUsuario(idd).subscribe(
       cursos => {
         this.cursos = cursos; // Aquí tienes la lista de detalles de los cursos
       },
