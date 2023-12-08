@@ -12,10 +12,10 @@
       </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let asignacion of cursos">
-            <td>{{ getCourseName(asignacion) }}</td>
-            <td>{{ getCourseDescription(asignacion) }}</td>
-            <td>{{ getCourseCategory(asignacion) }}</td>
+        <tr *ngFor="let curso of cursos">
+            <td>{{ curso.name}}</td>
+            <td>{{ curso.description}}</td>
+            <td>{{ curso.category }}</td>
           </tr>
           
           

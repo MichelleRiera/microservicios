@@ -1,7 +1,8 @@
-import { Observable } from 'rxjs';
+import { Observable, forkJoin} from 'rxjs';
 import { curso } from './../domain/curso.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -43,5 +44,24 @@ export class CursoService {
   getCourseById(id: string): Observable<curso> {
     const url = `http://localhost:8083/api/courses/${id}`;
     return this.http.get<curso>(url);
+  }
+
+  getCursosDeUsuario(userId: string): Observable<curso[]> {
+    return this.getAsignacionesPorUsuario(userId).pipe(
+      switchMap(asignaciones => {
+        // Verifica que 'asignaciones' es un array y tiene la propiedad 'courseId'
+        if (Array.isArray(asignaciones) && asignaciones.every(asig => 'courseId' in asig)) {
+          // Obtener los detalles de los cursos usando los courseId de las asignaciones
+          const requests = asignaciones.map(asig => 
+            this.getCourseById(asig.courseId)
+          );
+          // Usamos <curso[]> para asegurarnos de que TypeScript entiende el tipo de la salida de forkJoin
+          return forkJoin<curso[]>(requests);
+        } else {
+          // Si 'asignaciones' no es un array o no tiene la propiedad 'courseId', emite un array vacío
+          return [];
+        }
+      })
+    );
   }
 }

@@ -10,7 +10,7 @@ import { CursoService } from 'src/app/services/curso.service';
   styleUrls: ['./tuscurso.component.scss']
 })
 export class TuscursoComponent {
-  cursos: any[] = [];  
+  cursos: curso[] = [];  
   userId: string | undefined;
 
   constructor(private cursoService: CursoService, private authService: AutorizarService) { }
@@ -21,37 +21,21 @@ export class TuscursoComponent {
     this.userId = user?.id;
 
     if (this.userId) {
-      this.loadCursos();
+      this.cargarCursosDeUsuario(this.userId);
     } else {
       console.error('UserId no definido');
     }
   }
 
-  loadCursos() {
-    if (this.userId) {
-      this.cursoService.getAsignacionesPorUsuario(this.userId).subscribe(
-        (data) => {
-          console.log('Datos de cursos asignados:', data); // Agrega esta línea
-          this.cursos = data;
-        },
-        (error) => {
-          console.error('Error al obtener cursos asignados al usuario', error);
-        }
-      );
-    } else {
-      console.error('UserId no definido');
-    }
-  }
-  getCourseName(asignacion: any): string {
-    return asignacion.courses && asignacion.courses.length > 0 ? asignacion.courses[0].name : 'N/A';
-  }
-  
-  getCourseDescription(asignacion: any): string {
-    return asignacion.courses && asignacion.courses.length > 0 ? asignacion.courses[0].description : 'N/A';
-  }
-  
-  getCourseCategory(asignacion: any): string {
-    return asignacion.courses && asignacion.courses.length > 0 ? asignacion.courses[0].category : 'N/A';
+  cargarCursosDeUsuario(userId: string) {
+    this.cursoService.getCursosDeUsuario(userId).subscribe(
+      cursos => {
+        this.cursos = cursos; // Aquí tienes la lista de detalles de los cursos
+      },
+      error => {
+        console.error('Error al obtener los detalles de los cursos:', error);
+      }
+    );
   }
   
   
