@@ -27,28 +27,28 @@ export class AutorizarService {
   }
 
   login(username: string, password: string) {
-    return this.http.post<any>('http://localhost:8080/api/auth/login', { usuario: username, contrasenia: password })
+    return this.http.post<any>('http://localhost:8083/api/auth/login', { username, password })
       .pipe(
-        map(user => {
-          // Si la respuesta es exitosa
-          if(user && user.usuarioId) {
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            this.currentUserSubject.next(user);
-            return user;
-          }
-          // Si la respuesta es un error en el cuerpo de la respuesta
-          else if(user && user.codigo == 99) {
-            throw new Error(user.mensaje);
+        map(response => {
+          console.log('Respuesta del servidor completa:', response);
+  
+          // Verificar si la respuesta contiene la información esperada
+          if (response && response.id) {
+            localStorage.setItem('currentUser', JSON.stringify(response));
+            this.currentUserSubject.next(response);
+            return response;
+          } else {
+            console.error('La respuesta del servidor no contiene la información esperada.');
+            throw new Error('La respuesta del servidor no contiene la información esperada.');
           }
         }),
         catchError(error => {
           // Capturando errores HTTP
           this.logout();
-          if (error.status === 400) {
+          if (error.status === 401) {
             this.snackBar.open('Error al iniciar sesión: Credenciales de inicio de sesión inválidas.', 'Cerrar', { duration: 5000 });
-          }
-          else {
-            this.snackBar.open('Ocurrió un error inesperado. Por favor intente de nuevo.', 'Cerrar', { duration: 5000 });
+          } else {
+            this.snackBar.open('Ocurrió un error inesperado. Por favor, inténtelo de nuevo.', 'Cerrar', { duration: 5000 });
           }
           // En este caso, dado que estamos manejando el error, necesitamos retornar un observable que complete,
           // en lugar de lanzar un error. Podemos hacer esto con of(null).
@@ -56,12 +56,16 @@ export class AutorizarService {
         })
       );
   }
-
+  
+  
 
   logout() {
     // Elimina al usuario del almacenamiento local para cerrar la sesión
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+  }
+  getCurrentUser(): Usuario | null {
+    return this.currentUserSubject.value;
   }
 
 }

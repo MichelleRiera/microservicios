@@ -1,0 +1,30 @@
+<app-menu></app-menu>
+<app-cabecera></app-cabecera>
+<div>
+    <h2>Listado de Cursos</h2>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Curso</th>
+          <th>Descripción</th>
+          <th>Categoría</th>
+          <th>Acciones</th> <!-- Nueva columna para el botón -->
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Utiliza *ngFor para iterar sobre la lista de cursos -->
+        <tr *ngFor="let curso of curso">
+          <td>{{ curso.name }}</td>
+          <td>{{ curso.description }}</td>
+          <td>{{ curso.category }}</td>
+          <td>
+            <button mat-icon-button color="primary" (click)="asignarCurso(userId, curso.id)">
+              <mat-icon>add</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

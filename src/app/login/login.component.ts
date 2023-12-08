@@ -17,23 +17,37 @@ export class LoginComponent {
   ) {
     // redirige a la página de inicio si ya está conectado
     if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['']);
+      this.router.navigate(['home']);
     }
   }
 
   onSubmit() {
+    console.log('Datos del formulario:', this.model);
     this.authenticationService.login(this.model.username, this.model.password)
-      .subscribe(
-        data => {
-          this.router.navigate(['home']);
-        },
-        error => {
-          // Aquí se manejará el error.
-          console.error('Error de inicio de sesión:', error);
-          this.authenticationService.logout();
-        }
-      );
-  }
+  .subscribe(
+    data => {
+      console.log('Respuesta del servidor completa:', data);
+  
+      // Verificar si la respuesta contiene la información esperada
+      if (data && data.id) {
+        // Redirigir solo si la respuesta es válida
+        this.router.navigate(['/home']);
+      } else {
+        console.error('La respuesta del servidor no contiene la información esperada.');
+      }
+    },
+    error => {
+      // Aquí se manejará el error.
+      console.error('Error de inicio de sesión:', error);
+      this.authenticationService.logout();
+    }
+  );
+ }
+ onRegisterClick() {
+  // Redirigir a la ruta 'create-cliente'
+  this.router.navigate(['/create-cliente']);
+}
+  
 
 
 }

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MantClienteComponent } from './mant-cliente.component';
+import { TuscursoComponent } from './tuscurso.component';
 
-describe('MantClienteComponent', () => {
-  let component: MantClienteComponent;
-  let fixture: ComponentFixture<MantClienteComponent>;
+describe('TuscursoComponent', () => {
+  let component: TuscursoComponent;
+  let fixture: ComponentFixture<TuscursoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MantClienteComponent ]
+      declarations: [ TuscursoComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MantClienteComponent);
+    fixture = TestBed.createComponent(TuscursoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

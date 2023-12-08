@@ -1,0 +1,25 @@
+<app-menu></app-menu>
+<app-cabecera></app-cabecera>
+
+<div class="container">
+  <h2>Editar Curso</h2>
+
+  <form (submit)="editarCurso()">
+    <div class="form-group">
+      <label for="name">Nombre del Curso:</label>
+      <input type="text" id="name" name="name" [(ngModel)]="curso.name" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Descripción:</label>
+      <textarea id="description" name="description" [(ngModel)]="curso.description" class="form-control" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="category">Categoría:</label>
+      <input type="text" id="category" name="category" [(ngModel)]="curso.category" class="form-control" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+  </form>
+</div>

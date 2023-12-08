@@ -1,9 +1,9 @@
-import { Persona } from './persona.model';
+import { Usuario } from './usuario.model';
 import { curso } from "./curso.model";
 
 export interface Asigcurso {
-    asigid?: number;
-    curso?: curso;
-    Persona?: Persona;
+    id?: string;
+    courseId?: curso;
+    userId?: Usuario;
     
   }

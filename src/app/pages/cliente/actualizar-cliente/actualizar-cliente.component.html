@@ -1,0 +1,24 @@
+<app-menu></app-menu>
+<app-cabecera></app-cabecera>
+<div>
+    <h2>Actualizar Usuario</h2>
+  
+    <div>
+      <label>Usuario:</label>
+      <input type="text" [(ngModel)]="usuario.username" disabled>
+    </div>
+  
+    <div>
+        <label>Nueva Contraseña:</label>
+        <input type="password" [(ngModel)]="nuevaPassword" (input)="validarContrasenas()">
+      </div>
+      
+      <div>
+        <label>Confirmar Contraseña:</label>
+        <input type="password" [(ngModel)]="confirmarPassword" (input)="validarContrasenas()">
+        <span *ngIf="!contrasenasCoinciden" style="color: red;">Las contraseñas no coinciden.</span>
+      </div>
+  
+    <button (click)="actualizarUsuario()">Actualizar Usuario</button>
+  </div>
+  

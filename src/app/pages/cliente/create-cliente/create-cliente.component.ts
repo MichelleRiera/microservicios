@@ -40,7 +40,7 @@ export class CreateClienteComponent implements OnInit {
             duration: 2000,
           });
           this.Usuario = { username: '', password: '' };
-          // this.router.navigate(['list-persona']);
+          this.router.navigate(['/login']);
         }
       },
       error => {

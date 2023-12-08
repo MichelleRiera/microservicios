@@ -1,0 +1,26 @@
+<app-menu></app-menu>
+<app-cabecera></app-cabecera>
+
+<div class="container">
+    <h2>Registrar Nuevo Curso</h2>
+  
+    <form (submit)="registrarCurso()">
+      <div class="form-group">
+        <label for="name">Nombre del Curso:</label>
+        <input type="text" id="name" name="name" [(ngModel)]="nuevoCurso.name" class="form-control" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="description">Descripción:</label>
+        <textarea id="description" name="description" [(ngModel)]="nuevoCurso.description" class="form-control" required></textarea>
+      </div>
+  
+      <div class="form-group">
+        <label for="category">Categoría:</label>
+        <input type="text" id="category" name="category" [(ngModel)]="nuevoCurso.category" class="form-control" required>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Registrar Curso</button>
+    </form>
+  </div>
+  

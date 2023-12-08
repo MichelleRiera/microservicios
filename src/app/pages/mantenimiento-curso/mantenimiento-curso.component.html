@@ -1,0 +1,33 @@
+<!-- mantenimiento-curso.component.html -->
+
+<app-menu></app-menu>
+<app-cabecera></app-cabecera>
+
+<div class="container">
+  <h2>Listado de Cursos</h2>
+
+  <div class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Categoría</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let curso of cursos">
+          <td>{{ curso.name }}</td>
+          <td>{{ curso.description }}</td>
+          <td>{{ curso.category }}</td>
+          <td>
+            <button (click)="editarCurso(curso)">Editar</button>
+            <button (click)="eliminarCurso(curso.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

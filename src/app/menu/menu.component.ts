@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AutorizarService } from '../services/autorizar.service';
 import { Router } from '@angular/router';
+import { CursoService } from '../services/curso.service';
 
 @Component({
   selector: 'app-menu',
@@ -8,30 +9,31 @@ import { Router } from '@angular/router';
   styleUrls: ['./menu.component.scss']
 })
 export class MenuComponent {
-  // Variables booleanas para controlar la visibilidad de los menús
+  cursos: any[] = [];
   isAdmin: boolean = false;
   isGeneral: boolean = false;
 
   constructor(
     private router: Router,
-    private authenticationService: AutorizarService
-  ) {
-     // Obtener el usuario del Local Storage
-     const user = JSON.parse(localStorage.getItem('currentUser')!);
+    private authenticationService: AutorizarService,
+    private cursoService: CursoService
+  ) {}
 
-     // Verificar el cargo del usuario y habilitar/deshabilitar menús según corresponda
-     if (user && user.cargo === 'A') {
-       this.isAdmin = true;
-       this.isGeneral = true; // También se le habilitan los menús de gerente
-     } else if (user && user.cargo === 'G') {
-       this.isAdmin = false;
-       this.isGeneral = true;
-     }
-   }
+  ngOnInit() {
+    // Al cargar la página, obtén todos los cursos
+   
+  }
+
+  
 
   logout() {
     this.authenticationService.logout();
     this.router.navigate(['/login']);
   }
 
+  irACategoria(category: string) {
+    // Agrega lógica para navegar a la categoría seleccionada
+    // Por ejemplo, puedes navegar a una página que muestre los cursos de esa categoría
+    console.log(`Ir a la categoría: ${category}`);
+  }
 }

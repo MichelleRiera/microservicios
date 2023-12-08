@@ -1,0 +1,31 @@
+/* listar-curso.component.scss */
+
+div {
+    background-color: #f0f0f0; /* Fondo gris claro para la sección del menú */
+    padding: 20px;
+  }
+  
+  h2 {
+    color: #333; /* Color del texto oscuro para el encabezado */
+  }
+  
+  table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: #fff; /* Fondo blanco para la tabla */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd; /* Borde inferior del encabezado y las celdas */
+    color: #333; /* Color del texto oscuro para las celdas */
+  }
+  
+  th {
+    background-color: #4CAF50; /* Fondo verde oscuro para el encabezado */
+    color: white; /* Texto blanco para el encabezado */
+  }
+  

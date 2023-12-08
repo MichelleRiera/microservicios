@@ -24,7 +24,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CreateClienteComponent } from './pages/cliente/create-cliente/create-cliente.component';
-import { MantClienteComponent } from './pages/cliente/mant-cliente/mant-cliente.component';
 
 import { HomeComponent } from './pages/home/home.component';
 import { CabeceraComponent } from './cabecera/cabecera.component';
@@ -42,12 +41,17 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSelectModule} from '@angular/material/select';
 
-import { EditClienteComponent } from './pages/cliente/edit-cliente/edit-cliente.component';
 import { DatePipe } from '@angular/common';
 
 import { MatDatepickerModule } from '@angular/material/datepicker'; // Asegúrate de importar MatDatepickerModule
 import { MatNativeDateModule } from '@angular/material/core';
 import { InicioComponent } from './app/inicio/inicio.component';
+import { ListarCursoComponent } from './pages/listar-curso/listar-curso.component';
+import { TuscursoComponent } from './pages/tuscurso/tuscurso.component';
+import { ActualizarClienteComponent } from './pages/cliente/actualizar-cliente/actualizar-cliente.component';
+import { CrearCursoComponent } from './pages/crear-curso/crear-curso.component';
+import { MantenimientoCursoComponent } from './pages/mantenimiento-curso/mantenimiento-curso.component';
+import { EditarCursoComponent } from './pages/editar-curso/editar-curso.component';
 
 @NgModule({
   declarations: [
@@ -55,11 +59,15 @@ import { InicioComponent } from './app/inicio/inicio.component';
     MenuComponent,
      LoginComponent,
      CreateClienteComponent,
-     MantClienteComponent,
      HomeComponent,
      CabeceraComponent,
-     EditClienteComponent,
      InicioComponent,
+     ListarCursoComponent,
+     TuscursoComponent,
+     ActualizarClienteComponent,
+     CrearCursoComponent,
+     MantenimientoCursoComponent,
+     EditarCursoComponent,
 
      
   ],
