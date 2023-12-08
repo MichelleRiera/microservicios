@@ -22,38 +22,25 @@ export class ActualizarClienteComponent {
 
   ngOnInit(): void {
     // Obtener el ID de la ruta
-    this.route.params.subscribe(params => {
-      this.id = params['id'];
-      // Cargar datos del usuario al inicializar el componente
-      this.loadUsuarioData();
-    });
+
+      this.usuario = JSON.parse(localStorage.getItem('currentUser') || '{}');
+
   }
 
-  loadUsuarioData() {
-    if (this.id) {
-      this.usuarioService.getUsuarioById(this.id).subscribe(
-        data => {
-          this.usuario = data;
-        },
-        error => {
-          console.error('Error al cargar datos del usuario:', error);
-        }
-      );
-    }
-  }
 
   validarContrasenas() {
     this.contrasenasCoinciden = this.nuevaPassword === this.confirmarPassword;
   }
 
   actualizarUsuario() {
-    if (this.id && this.contrasenasCoinciden) {
+    if (this.usuario.id && this.contrasenasCoinciden) {
       const usuarioActualizado: Usuario = {
+        id:this.usuario.id,
         username: this.usuario.username,  // Puedes actualizar otras propiedades según sea necesario
         password: this.nuevaPassword
       };
   
-      this.usuarioService.updateUsuario(this.id, usuarioActualizado).subscribe(
+      this.usuarioService.updateUsuario(this.usuario.id, usuarioActualizado).subscribe(
         data => {
           console.log('Usuario actualizado correctamente:', data);
         },
